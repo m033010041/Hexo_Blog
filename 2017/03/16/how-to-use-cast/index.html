@@ -3,14 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: Hexo macOS | Bean&#39;s Linux Notes</title>
+  <title>Ｃ語言資料轉型 | Bean&#39;s Linux Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Bean's Linux Notes">
-<meta property="og:url" content="https://m033010041.github.io/tags/Hexo-macOS/index.html">
+  <meta name="description" content="int to double:
+1234567891011double int2double(int input)&amp;#123;	double output;	char temp[20]; //up to support 19 digit value(include dot)	sprintf(&quot;%d&quot;, input); //covert value to string	temp[19] = 0x00;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ｃ語言資料轉型">
+<meta property="og:url" content="https://m033010041.github.io/2017/03/16/how-to-use-cast/index.html">
 <meta property="og:site_name" content="Bean's Linux Notes">
+<meta property="og:description" content="int to double:
+1234567891011double int2double(int input)&amp;#123;	double output;	char temp[20]; //up to support 19 digit value(include dot)	sprintf(&quot;%d&quot;, input); //covert value to string	temp[19] = 0x00;">
+<meta property="og:updated_time" content="2017-03-16T08:40:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bean's Linux Notes">
+<meta name="twitter:title" content="Ｃ語言資料轉型">
+<meta name="twitter:description" content="int to double:
+1234567891011double int2double(int input)&amp;#123;	double output;	char temp[20]; //up to support 19 digit value(include dot)	sprintf(&quot;%d&quot;, input); //covert value to string	temp[19] = 0x00;">
   
     <link rel="alternate" href="/atom.xml" title="Bean&#39;s Linux Notes" type="application/atom+xml">
   
@@ -59,39 +66,53 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/Hexo_Blog/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/Hexo_Blog/2017/01/01/Install-Hexo-macOS/" class="archive-article-date">
-  <time datetime="2017-01-01T15:00:42.000Z" itemprop="datePublished">Jan 1</time>
+        <section id="main"><article id="post-how-to-use-cast" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Hexo_Blog/2017/03/16/how-to-use-cast/" class="article-date">
+  <time datetime="2017-03-16T03:03:49.000Z" itemprop="datePublished">2017-03-16</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Hexo_Blog/2017/01/01/Install-Hexo-macOS/">快速安裝 Hexo 指南</a>
+    <h1 class="article-title" itemprop="name">
+      Ｃ語言資料轉型
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>int to double:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">int2double</span><span class="params">(<span class="keyword">int</span> input)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">double</span> output;</div><div class="line">	<span class="keyword">char</span> temp[<span class="number">20</span>]; <span class="comment">//up to support 19 digit value(include dot)</span></div><div class="line"></div><div class="line">	<span class="built_in">sprintf</span>(<span class="string">"%d"</span>, input); <span class="comment">//covert value to string</span></div><div class="line">	temp[<span class="number">19</span>] = <span class="number">0x00</span>;</div><div class="line">	<span class="built_in">sscanf</span>(<span class="string">"%lf"</span>, &amp;output);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> output;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://m033010041.github.io/Hexo_Blog/2017/03/16/how-to-use-cast/" data-id="cj0c5ctv40002ee83bk3ghrwx" class="article-share-link">Share</a>
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/Hexo_Blog/2017/01/01/Install-Hexo-macOS/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">快速安裝 Hexo 指南</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         
