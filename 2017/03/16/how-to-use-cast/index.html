@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Bean's Linux Notes">
 <meta property="og:description" content="int to double:
 1234567891011double int2double(int input)&amp;#123;	double output;	char temp[20]; //up to support 19 digit value(include dot)	sprintf(&quot;%d&quot;, input); //covert value to string	temp[19] = 0x00;">
-<meta property="og:updated_time" content="2017-03-16T08:40:16.000Z">
+<meta property="og:updated_time" content="2017-03-16T08:44:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ｃ語言資料轉型">
 <meta name="twitter:description" content="int to double:
@@ -90,11 +90,13 @@
       
         <p>int to double:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">int2double</span><span class="params">(<span class="keyword">int</span> input)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">double</span> output;</div><div class="line">	<span class="keyword">char</span> temp[<span class="number">20</span>]; <span class="comment">//up to support 19 digit value(include dot)</span></div><div class="line"></div><div class="line">	<span class="built_in">sprintf</span>(<span class="string">"%d"</span>, input); <span class="comment">//covert value to string</span></div><div class="line">	temp[<span class="number">19</span>] = <span class="number">0x00</span>;</div><div class="line">	<span class="built_in">sscanf</span>(<span class="string">"%lf"</span>, &amp;output);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> output;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>double to int</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">double2int</span><span class="params">(<span class="keyword">double</span> input)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> output;</div><div class="line">	<span class="keyword">char</span> temp[<span class="number">20</span>];</div><div class="line"></div><div class="line">	<span class="built_in">sprintf</span>(<span class="string">"%lf"</span>, intput);</div><div class="line">	temp[<span class="number">19</span>] = <span class="number">0x00</span>;</div><div class="line">	<span class="built_in">sscanf</span>(<span class="string">"%d"</span>, &amp;output);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> output;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://m033010041.github.io/Hexo_Blog/2017/03/16/how-to-use-cast/" data-id="cj0c5ctv40002ee83bk3ghrwx" class="article-share-link">Share</a>
+      <a data-url="https://m033010041.github.io/Hexo_Blog/2017/03/16/how-to-use-cast/" data-id="cj0c5gyb80000g583p9hmr0xh" class="article-share-link">Share</a>
       
       
     </footer>
