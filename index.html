@@ -83,8 +83,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>int to double:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">int2double</span><span class="params">(<span class="keyword">int</span> input)</span></div><div class="line"></span>&#123;</div><div class="line">	<span class="keyword">double</span> output;</div><div class="line">	<span class="keyword">char</span> temp[<span class="number">20</span>]; <span class="comment">//up to support 19 digit value(include dot)</span></div><div class="line"></div><div class="line">	<span class="built_in">sprintf</span>(<span class="string">"%d"</span>, input); <span class="comment">//covert value to string</span></div><div class="line">	temp[<span class="number">19</span>] = <span class="number">0x00</span>;</div><div class="line">	<span class="built_in">sscanf</span>(<span class="string">"%lf"</span>, &amp;output);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> output;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p>##cast syntax:</p>
+<p><code>(another type)operand</code></p>
+<p>cast 的轉型方式要看compiler來決定</p>
         
           <p class="article-more-link">
             <a href="/Hexo_Blog/2017/03/16/how-to-use-cast/#more">Read More</a>
@@ -93,7 +94,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://m033010041.github.io/Hexo_Blog/2017/03/16/how-to-use-cast/" data-id="cj0c5wh9t0003nm83txsmr98i" class="article-share-link">Share</a>
+      <a data-url="https://m033010041.github.io/Hexo_Blog/2017/03/16/how-to-use-cast/" data-id="cj0dnof430001dk83xs7lysfu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Hexo_Blog/tags/C-progrmming/">C progrmming</a></li></ul>
@@ -132,7 +133,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://m033010041.github.io/Hexo_Blog/2017/01/01/Install-Hexo-macOS/" data-id="cj0c5wh9n0001nm839j7efox9" class="article-share-link">Share</a>
+      <a data-url="https://m033010041.github.io/Hexo_Blog/2017/01/01/Install-Hexo-macOS/" data-id="cj0dnof3x0000dk83hl5fzzum" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Hexo_Blog/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Hexo_Blog/tags/macOS/">macOS</a></li></ul>
@@ -177,7 +178,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://m033010041.github.io/Hexo_Blog/2016/12/29/HomeBrew_Install/" data-id="cj0c5wh9j0000nm83dfanngfo" class="article-share-link">Share</a>
+      <a data-url="https://m033010041.github.io/Hexo_Blog/2016/12/29/HomeBrew_Install/" data-id="cj0dnof4a0003dk83ssk87wxm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Hexo_Blog/tags/Homebrew/">Homebrew</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Hexo_Blog/tags/macOS/">macOS</a></li></ul>

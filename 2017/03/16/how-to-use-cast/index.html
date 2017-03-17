@@ -5,19 +5,22 @@
   
   <title>Ｃ語言資料轉型 | Bean&#39;s Linux Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="int to double:
-1234567891011double int2double(int input)&amp;#123;	double output;	char temp[20]; //up to support 19 digit value(include dot)	sprintf(&quot;%d&quot;, input); //covert value to string	temp[19] = 0x00;">
+  <meta name="description" content="##cast syntax:
+(another type)operand
+cast 的轉型方式要看compiler來決定">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ｃ語言資料轉型">
 <meta property="og:url" content="https://m033010041.github.io/2017/03/16/how-to-use-cast/index.html">
 <meta property="og:site_name" content="Bean's Linux Notes">
-<meta property="og:description" content="int to double:
-1234567891011double int2double(int input)&amp;#123;	double output;	char temp[20]; //up to support 19 digit value(include dot)	sprintf(&quot;%d&quot;, input); //covert value to string	temp[19] = 0x00;">
-<meta property="og:updated_time" content="2017-03-16T08:53:58.000Z">
+<meta property="og:description" content="##cast syntax:
+(another type)operand
+cast 的轉型方式要看compiler來決定">
+<meta property="og:updated_time" content="2017-03-17T10:01:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ｃ語言資料轉型">
-<meta name="twitter:description" content="int to double:
-1234567891011double int2double(int input)&amp;#123;	double output;	char temp[20]; //up to support 19 digit value(include dot)	sprintf(&quot;%d&quot;, input); //covert value to string	temp[19] = 0x00;">
+<meta name="twitter:description" content="##cast syntax:
+(another type)operand
+cast 的轉型方式要看compiler來決定">
   
     <link rel="alternate" href="/atom.xml" title="Bean&#39;s Linux Notes" type="application/atom+xml">
   
@@ -88,16 +91,57 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>int to double:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">int2double</span><span class="params">(<span class="keyword">int</span> input)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">double</span> output;</div><div class="line">	<span class="keyword">char</span> temp[<span class="number">20</span>]; <span class="comment">//up to support 19 digit value(include dot)</span></div><div class="line"></div><div class="line">	<span class="built_in">sprintf</span>(<span class="string">"%d"</span>, input); <span class="comment">//covert value to string</span></div><div class="line">	temp[<span class="number">19</span>] = <span class="number">0x00</span>;</div><div class="line">	<span class="built_in">sscanf</span>(<span class="string">"%lf"</span>, &amp;output);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> output;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p>##cast syntax:</p>
+<p><code>(another type)operand</code></p>
+<p>cast 的轉型方式要看compiler來決定</p>
 <a id="more"></a>
-<p>double to int</p>
+<p>由於轉型並非只是將記憶體區塊換成某形態的方式讀取<br>例如 IEEE 754 與 一般的 unsigned/signed 整數型態格式就是不同<br>正常的signed-integer資料排列為：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">1 bit</th>
+<th style="text-align:center">31 bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">signed</td>
+<td style="text-align:center">data</td>
+</tr>
+</tbody>
+</table>
+<p>而IEEE 754 的資料排列格式為：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">1 bit</th>
+<th style="text-align:center">8 bits</th>
+<th style="text-align:center">23 bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">signed</td>
+<td style="text-align:center">exponent</td>
+<td style="text-align:center">fraction</td>
+</tr>
+</tbody>
+</table>
+<p>我們以 “5” 這個數值來做例子</p>
+<p>signed-integer expression: 0000_0000_0000_0000_0000_0000_0000_0101</p>
+<p>如果直接拿這個直接帶入 IEEE 754 的表示法<br>我們可以透過運算</p>
+<p>\ (-1)^S <em> 1.F </em> 2^{E-127}</p>
+<p>由於 \2^{E-127} = 2^{0-127} = 2^{-127} 非常的小，因此算出來是一個趨近於 0 的數值<br>因此有時候會在轉型時遇到轉成(單/倍)精度浮點數時發生結果有誤</p>
+<p>因此我們可以用簡單的 sprintf 與 sscanf 來解決這個問題</p>
+<p>##int to double:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">int2double</span><span class="params">(<span class="keyword">int</span> input)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">double</span> output;</div><div class="line">	<span class="keyword">char</span> temp[<span class="number">20</span>]; <span class="comment">//up to support 19 digit value(include dot)</span></div><div class="line"></div><div class="line">	<span class="built_in">sprintf</span>(<span class="string">"%d"</span>, input); <span class="comment">//covert value to string</span></div><div class="line">	temp[<span class="number">19</span>] = <span class="number">0x00</span>;</div><div class="line">	<span class="built_in">sscanf</span>(<span class="string">"%lf"</span>, &amp;output);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> output;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>##double to int</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">double2int</span><span class="params">(<span class="keyword">double</span> input)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> output;</div><div class="line">	<span class="keyword">char</span> temp[<span class="number">20</span>];</div><div class="line"></div><div class="line">	<span class="built_in">sprintf</span>(<span class="string">"%lf"</span>, intput);</div><div class="line">	temp[<span class="number">19</span>] = <span class="number">0x00</span>;</div><div class="line">	<span class="built_in">sscanf</span>(<span class="string">"%d"</span>, &amp;output);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> output;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://m033010041.github.io/Hexo_Blog/2017/03/16/how-to-use-cast/" data-id="cj0c5wh9t0003nm83txsmr98i" class="article-share-link">Share</a>
+      <a data-url="https://m033010041.github.io/Hexo_Blog/2017/03/16/how-to-use-cast/" data-id="cj0dnof430001dk83xs7lysfu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Hexo_Blog/tags/C-progrmming/">C progrmming</a></li></ul>
