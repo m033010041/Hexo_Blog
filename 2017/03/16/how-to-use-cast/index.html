@@ -5,21 +5,18 @@
   
   <title>Ｃ語言資料轉型 | Bean&#39;s Linux Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##cast syntax:
-(another type)operand
+  <meta name="description" content="SYNTAX:(another type)operand
 cast 的轉型方式要看compiler來決定">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ｃ語言資料轉型">
 <meta property="og:url" content="https://m033010041.github.io/2017/03/16/how-to-use-cast/index.html">
 <meta property="og:site_name" content="Bean's Linux Notes">
-<meta property="og:description" content="##cast syntax:
-(another type)operand
+<meta property="og:description" content="SYNTAX:(another type)operand
 cast 的轉型方式要看compiler來決定">
-<meta property="og:updated_time" content="2017-03-17T10:01:36.000Z">
+<meta property="og:updated_time" content="2017-03-17T10:04:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ｃ語言資料轉型">
-<meta name="twitter:description" content="##cast syntax:
-(another type)operand
+<meta name="twitter:description" content="SYNTAX:(another type)operand
 cast 的轉型方式要看compiler來決定">
   
     <link rel="alternate" href="/atom.xml" title="Bean&#39;s Linux Notes" type="application/atom+xml">
@@ -91,8 +88,7 @@ cast 的轉型方式要看compiler來決定">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##cast syntax:</p>
-<p><code>(another type)operand</code></p>
+        <h2 id="SYNTAX"><a href="#SYNTAX" class="headerlink" title="SYNTAX:"></a>SYNTAX:</h2><p><code>(another type)operand</code></p>
 <p>cast 的轉型方式要看compiler來決定</p>
 <a id="more"></a>
 <p>由於轉型並非只是將記憶體區塊換成某形態的方式讀取<br>例如 IEEE 754 與 一般的 unsigned/signed 整數型態格式就是不同<br>正常的signed-integer資料排列為：</p>
@@ -133,10 +129,8 @@ cast 的轉型方式要看compiler來決定">
 <p>\ (-1)^S <em> 1.F </em> 2^{E-127}</p>
 <p>由於 \2^{E-127} = 2^{0-127} = 2^{-127} 非常的小，因此算出來是一個趨近於 0 的數值<br>因此有時候會在轉型時遇到轉成(單/倍)精度浮點數時發生結果有誤</p>
 <p>因此我們可以用簡單的 sprintf 與 sscanf 來解決這個問題</p>
-<p>##int to double:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">int2double</span><span class="params">(<span class="keyword">int</span> input)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">double</span> output;</div><div class="line">	<span class="keyword">char</span> temp[<span class="number">20</span>]; <span class="comment">//up to support 19 digit value(include dot)</span></div><div class="line"></div><div class="line">	<span class="built_in">sprintf</span>(<span class="string">"%d"</span>, input); <span class="comment">//covert value to string</span></div><div class="line">	temp[<span class="number">19</span>] = <span class="number">0x00</span>;</div><div class="line">	<span class="built_in">sscanf</span>(<span class="string">"%lf"</span>, &amp;output);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> output;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>##double to int</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">double2int</span><span class="params">(<span class="keyword">double</span> input)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> output;</div><div class="line">	<span class="keyword">char</span> temp[<span class="number">20</span>];</div><div class="line"></div><div class="line">	<span class="built_in">sprintf</span>(<span class="string">"%lf"</span>, intput);</div><div class="line">	temp[<span class="number">19</span>] = <span class="number">0x00</span>;</div><div class="line">	<span class="built_in">sscanf</span>(<span class="string">"%d"</span>, &amp;output);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> output;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="int-to-double"><a href="#int-to-double" class="headerlink" title="int to double:"></a>int to double:</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">int2double</span><span class="params">(<span class="keyword">int</span> input)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">double</span> output;</div><div class="line">	<span class="keyword">char</span> temp[<span class="number">20</span>]; <span class="comment">//up to support 19 digit value(include dot)</span></div><div class="line"></div><div class="line">	<span class="built_in">sprintf</span>(<span class="string">"%d"</span>, input); <span class="comment">//covert value to string</span></div><div class="line">	temp[<span class="number">19</span>] = <span class="number">0x00</span>;</div><div class="line">	<span class="built_in">sscanf</span>(<span class="string">"%lf"</span>, &amp;output);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> output;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="double-to-int"><a href="#double-to-int" class="headerlink" title="double to int"></a>double to int</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">double2int</span><span class="params">(<span class="keyword">double</span> input)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> output;</div><div class="line">	<span class="keyword">char</span> temp[<span class="number">20</span>];</div><div class="line"></div><div class="line">	<span class="built_in">sprintf</span>(<span class="string">"%lf"</span>, intput);</div><div class="line">	temp[<span class="number">19</span>] = <span class="number">0x00</span>;</div><div class="line">	<span class="built_in">sscanf</span>(<span class="string">"%d"</span>, &amp;output);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> output;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
