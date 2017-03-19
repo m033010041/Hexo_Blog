@@ -13,7 +13,7 @@ cast 的轉型方式要看compiler來決定">
 <meta property="og:site_name" content="Bean's Linux Notes">
 <meta property="og:description" content="SYNTAX:(another type)operand
 cast 的轉型方式要看compiler來決定">
-<meta property="og:updated_time" content="2017-03-17T10:35:17.000Z">
+<meta property="og:updated_time" content="2017-03-19T04:22:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ｃ語言資料轉型">
 <meta name="twitter:description" content="SYNTAX:(another type)operand
@@ -131,11 +131,15 @@ cast 的轉型方式要看compiler來決定">
 <p>因此我們可以用簡單的 sprintf 與 sscanf 來解決這個問題</p>
 <h2 id="int-to-double"><a href="#int-to-double" class="headerlink" title="int to double:"></a>int to double:</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">int2double</span><span class="params">(<span class="keyword">int</span> input)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">double</span> output;</div><div class="line">	<span class="keyword">char</span> temp[<span class="number">20</span>]; <span class="comment">//up to support 19 digit value(include dot)</span></div><div class="line"></div><div class="line">	<span class="built_in">sprintf</span>(<span class="string">"%d"</span>, input); <span class="comment">//covert value to string</span></div><div class="line">	temp[<span class="number">19</span>] = <span class="number">0x00</span>;</div><div class="line">	<span class="built_in">sscanf</span>(<span class="string">"%lf"</span>, &amp;output);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> output;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="double-to-int"><a href="#double-to-int" class="headerlink" title="double to int"></a>double to int</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">double2int</span><span class="params">(<span class="keyword">double</span> input)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> output;</div><div class="line">	<span class="keyword">char</span> temp[<span class="number">20</span>];</div><div class="line"></div><div class="line">	<span class="built_in">sprintf</span>(<span class="string">"%lf"</span>, intput);</div><div class="line">	temp[<span class="number">19</span>] = <span class="number">0x00</span>;</div><div class="line">	<span class="built_in">sscanf</span>(<span class="string">"%d"</span>, &amp;output);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> output;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="補充：指標轉型-改變記憶體的判讀方式"><a href="#補充：指標轉型-改變記憶體的判讀方式" class="headerlink" title="補充：指標轉型(改變記憶體的判讀方式)"></a>補充：指標轉型(改變記憶體的判讀方式)</h3><p>若不想要更動到原本資料的內容，而僅將其記憶體判讀為該型態的格式時<br>我們可以透過指標轉型來完成</p>
+<p>例如</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> i, j;</div><div class="line"></div><div class="line">i = j = <span class="number">5</span>;</div><div class="line"><span class="keyword">float</span> b = (<span class="keyword">float</span>)i; <span class="comment">//convert a to float type</span></div><div class="line"><span class="keyword">float</span> c = *(<span class="keyword">float</span> *)&amp;j; <span class="comment">//不更動記憶體內容的情況下將判讀方式改成float type</span></div><div class="line"></div><div class="line"><span class="built_in">printf</span>(<span class="string">"b = %f, c = %f\n"</span>, b, c);</div></pre></td></tr></table></figure>
+<p>這樣出來的結果為 b=5.0000 c=0.0000</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://m033010041.github.io/Hexo_Blog/2017/03/16/how-to-use-cast/" data-id="cj0dourta00032583oln68i63" class="article-share-link">Share</a>
+      <a data-url="https://m033010041.github.io/Hexo_Blog/2017/03/16/how-to-use-cast/" data-id="cj0g6euft0000ps83t3m7kty9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Hexo_Blog/tags/C-progrmming/">C progrmming</a></li></ul>
