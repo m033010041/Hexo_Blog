@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Ｃ語言資料轉型"/>
+
+
+
+
+  <meta name="keywords" content="C progrmming," />
+
+
+
+
+  <link rel="alternate" href="/Hexo_Blog/atom.xml" title="Bean's Linux Notes">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/Hexo_Blog/favicon.ico?v=2.3.x" />
+
+
+
+<link rel="canonical" href="https://m033010041.github.io/2017/03/16/how-to-use-cast/"/>
+
+
+<meta name="description" content="SYNTAX:(another type)operand
+cast 的轉型方式要看compiler來決定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ｃ語言資料轉型">
+<meta property="og:url" content="https://m033010041.github.io/2017/03/16/how-to-use-cast/index.html">
+<meta property="og:site_name" content="Bean's Linux Notes">
+<meta property="og:description" content="SYNTAX:(another type)operand
+cast 的轉型方式要看compiler來決定">
+<meta property="og:updated_time" content="2017-03-19T04:22:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ｃ語言資料轉型">
+<meta name="twitter:description" content="SYNTAX:(another type)operand
+cast 的轉型方式要看compiler來決定">
+
+
+<link rel="stylesheet" type="text/css" href="/Hexo_Blog/css/style.css?v=2.3.x" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/Hexo_Blog/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: true,
+    searchPath: "/Hexo_Blog/search.xml",
+    fancybox: true,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+
+
+
+    <title> Ｃ語言資料轉型 · Bean's Linux Notes </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/Hexo_Blog/." class="logo">Bean's Linux Notes</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/Hexo_Blog/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/Hexo_Blog/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/Hexo_Blog/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/Hexo_Blog/." class="logo">Bean's Linux Notes</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/Hexo_Blog/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/Hexo_Blog/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/Hexo_Blog/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Ｃ語言資料轉型
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Mar 16, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SYNTAX"><span class="toc-text">SYNTAX:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#int-to-double"><span class="toc-text">int to double:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#double-to-int"><span class="toc-text">double to int</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#補充：指標轉型-改變記憶體的判讀方式"><span class="toc-text">補充：指標轉型(改變記憶體的判讀方式)</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="SYNTAX"><a href="#SYNTAX" class="headerlink" title="SYNTAX:"></a>SYNTAX:</h2><p><code>(another type)operand</code></p>
+<p>cast 的轉型方式要看compiler來決定</p>
+<a id="more"></a>
+<p>由於轉型並非只是將記憶體區塊換成某形態的方式讀取<br>例如 IEEE 754 與 一般的 unsigned/signed 整數型態格式就是不同<br>正常的signed-integer資料排列為：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">1 bit</th>
+<th style="text-align:center">31 bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">signed</td>
+<td style="text-align:center">data</td>
+</tr>
+</tbody>
+</table>
+<p>而IEEE 754 的資料排列格式為：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">1 bit</th>
+<th style="text-align:center">8 bits</th>
+<th style="text-align:center">23 bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">signed</td>
+<td style="text-align:center">exponent</td>
+<td style="text-align:center">fraction</td>
+</tr>
+</tbody>
+</table>
+<p>我們以 “5” 這個數值來做例子</p>
+<p>signed-integer expression: 0000_0000_0000_0000_0000_0000_0000_0101</p>
+<p>如果直接拿這個直接帶入 IEEE 754 的表示法<br>我們可以透過運算</p>
+<p>$$ {(-1)^S} \times 1.F \times 2^{E-127} $$ </p>
+<p>由於 $2^{E-127} = 2^{0-127} = 2^{-127}$ 非常的小，因此算出來是一個趨近於 0 的數值<br>因此有時候會在轉型時遇到轉成(單/倍)精度浮點數時發生結果有誤</p>
+<p>因此我們可以用簡單的 sprintf 與 sscanf 來解決這個問題</p>
+<h2 id="int-to-double"><a href="#int-to-double" class="headerlink" title="int to double:"></a>int to double:</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">int2double</span><span class="params">(<span class="keyword">int</span> input)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">double</span> output;</div><div class="line">	<span class="keyword">char</span> temp[<span class="number">20</span>]; <span class="comment">//up to support 19 digit value(include dot)</span></div><div class="line"></div><div class="line">	<span class="built_in">sprintf</span>(<span class="string">"%d"</span>, input); <span class="comment">//covert value to string</span></div><div class="line">	temp[<span class="number">19</span>] = <span class="number">0x00</span>;</div><div class="line">	<span class="built_in">sscanf</span>(<span class="string">"%lf"</span>, &amp;output);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> output;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="double-to-int"><a href="#double-to-int" class="headerlink" title="double to int"></a>double to int</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">double2int</span><span class="params">(<span class="keyword">double</span> input)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> output;</div><div class="line">	<span class="keyword">char</span> temp[<span class="number">20</span>];</div><div class="line"></div><div class="line">	<span class="built_in">sprintf</span>(<span class="string">"%lf"</span>, intput);</div><div class="line">	temp[<span class="number">19</span>] = <span class="number">0x00</span>;</div><div class="line">	<span class="built_in">sscanf</span>(<span class="string">"%d"</span>, &amp;output);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> output;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="補充：指標轉型-改變記憶體的判讀方式"><a href="#補充：指標轉型-改變記憶體的判讀方式" class="headerlink" title="補充：指標轉型(改變記憶體的判讀方式)"></a>補充：指標轉型(改變記憶體的判讀方式)</h3><p>若不想要更動到原本資料的內容，而僅將其記憶體判讀為該型態的格式時<br>我們可以透過指標轉型來完成</p>
+<p>例如</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> i, j;</div><div class="line"></div><div class="line">i = j = <span class="number">5</span>;</div><div class="line"><span class="keyword">float</span> b = (<span class="keyword">float</span>)i; <span class="comment">//convert a to float type</span></div><div class="line"><span class="keyword">float</span> c = *(<span class="keyword">float</span> *)&amp;j; <span class="comment">//不更動記憶體內容的情況下將判讀方式改成float type</span></div><div class="line"></div><div class="line"><span class="built_in">printf</span>(<span class="string">"b = %f, c = %f\n"</span>, b, c);</div></pre></td></tr></table></figure>
+<p>這樣出來的結果為 b=5.0000 c=0.0000</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <span>Timmy Liu</span>
+    </p>
+    <p class="copyright-item">
+      <span>Origin: </span>
+      <a href="https://m033010041.github.io">https://m033010041.github.io</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="https://m033010041.github.io/Hexo_Blog/2017/03/16/how-to-use-cast/">https://m033010041.github.io/Hexo_Blog/2017/03/16/how-to-use-cast/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      文章使用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知識共享署名- 非商業性使用 4.0 國際許可協議</a>進行許可
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/Hexo_Blog/tags/C-progrmming/">C progrmming</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/Hexo_Blog/2017/03/21/Vimdiff-tutorial/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Vimdiff - 軟體工程必備</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/Hexo_Blog/2017/01/01/Install-Hexo-macOS/">
+        <span class="next-text nav-default">快速安裝 Hexo 指南</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:timmy_post@hotmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/m033010041" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Timmy Liu</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/Hexo_Blog/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/Hexo_Blog/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/Hexo_Blog/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/Hexo_Blog/js/src/even.js?v=2.3.x"></script>
+<script type="text/javascript" src="/Hexo_Blog/js/src/bootstrap.js?v=2.3.x"></script>
+
+    
+  <script type="text/html" id="search-result">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title">
+          <a href="$url$" class="post-link">
+            $title$
+          </a>
+        </h1>
+      </header>
+      <div class="post-content">
+        $content$
+        <div class="read-more">
+          <a href="$url$" class="read-more-link">
+            Read more..
+          </a>
+        </div>
+      </div>
+    </article>
+  </script>
+  <script type="text/html" id="no-search-result">
+    <div class="no-result">
+      <h2>No result found!</h2>
+    </div>
+  </script>
+  <script type="text/javascript" src="/Hexo_Blog/js/src/search.js?v=2.3.x"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+  </body>
+</html>
