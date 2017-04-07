@@ -209,21 +209,15 @@
       
         
         
+          
+        
 
         
           <h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>記錄一下 Patch 的生成方式以及使用方法</p>
 <p>Patch 主要的目的是為了在某個程式內<br>透過此程式為基礎，對特定功能進行新增<br>中文稱此為“補丁”，但我還是比較喜歡唸”patch” </p>
-<p>因此在我的認知下：</p>
-<ol>
-<li>此程式在沒有補丁時，原本的程式還是可以成功編譯以及運作</li>
-<li>Patch 可以滿足需要此功能的用戶，但不一定所有人都適用(若都適用應該就會 merge 進主程式裡面了)</li>
-</ol>
-<p>OK 開始正文吧！</p>
-<h2 id="透過-diff-指令產生-patch-file"><a href="#透過-diff-指令產生-patch-file" class="headerlink" title="透過 diff 指令產生 patch file"></a>透過 diff 指令產生 patch file</h2><p>linux/unix 系統大部分都可以使用 “diff” 指令來產生 patch file<br>當然 Git, Subversion, CVS 等軟體也可以產生</p>
-<p>我們用 diff 跟 git 為例，指令為</p>
-<h3 id="diff"><a href="#diff" class="headerlink" title="diff"></a>diff</h3><p><code>diff &lt;file1&gt; &lt;file2&gt; &gt; &lt;patch-file&gt;</code><br>file1 是有新增 patch 的完整程式<br>file2 則是原本沒有加入 patch 的主程式<br>等等我們透過範例來詳細說明 patch 檔的內容</p>
-<h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p><code>git diff &gt; &lt;patch-file&gt;&gt;</code><br>或是<br><code>git diff &lt;commit-num&gt; &gt; &lt;patch-file&gt;</code><br>這兩組的差異只是差在有無填入 commit 編號，沒有的話就是用當時 local 的 HEAD commit 為主</p>
-
+          <div class="read-more">
+            <a href="/Hexo_Blog/2017/03/21/Vimdiff-tutorial/" class="read-more-link">Read more..</a>
+          </div>
         
       
     </div>
